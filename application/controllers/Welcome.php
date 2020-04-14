@@ -23,7 +23,8 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
 	
-	public function hi(){
-		echo "hello";
+	public function XiaoCao(){
+		header("Content-type:text/html;charset=utf-8");
+		echo "想吃小曹做的牛肉面！";
 	}
 }
