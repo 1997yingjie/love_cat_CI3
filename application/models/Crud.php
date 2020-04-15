@@ -8,7 +8,7 @@ class Crud extends CI_Model{
     }
     public function insert($tablename,$array_info){
 
-        $ret = this->db->insert($tablename,$array_info);
+        $ret = $this->db->insert($tablename,$array_info);
         echo "insert";
         return $ret;
     }
