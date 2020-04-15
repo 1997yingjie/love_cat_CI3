@@ -6,7 +6,12 @@ class Adduser extends CI_Controller{
         $this->load->model( "Crud" );
     }
 
-    public function newUser(){
-        $this->Crud->insert();
+    public function newUser(){//新增用户
+        $array_user = array();
+        $array_user['user_status'] = 1;
+        $array_user['user_name'] = "CaoCheng";
+        $array_user['user_passwd'] = "CaoCheng";
+        $ret = $this->Crud->insert("user",$array_user);
+        echo $ret;
     }
 }
