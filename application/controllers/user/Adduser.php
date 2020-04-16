@@ -12,7 +12,7 @@ class Adduser extends CI_Controller{
         $array_select['user_name'] = $arrary_params['user_name'];
         $userInDB = $this->Crud->select('user',$array_select);
         $ret = array();
-        if( ! $userInDB.empty()){
+        if( ! $userInDB.empty() ){
             //已经存在
             $ret['result'] = "1";
             $ret['massage'] = "username useless";
