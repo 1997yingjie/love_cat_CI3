@@ -11,12 +11,12 @@ class Adduser extends CI_Controller{
         $array_select = array();
         $array_select['user_name'] = $arrary_params['user_name'];
         $userInDB = $this->Crud->select('user',$array_select);
-        $ret = array();
+        $retMassge = array();
         if( ! empty($userInDB) ){
             //已经存在
-            $ret['result'] = "1";
-            $ret['massage'] = "username useless";
-            var_dump($ret);
+            $retMassge['result'] = "1";
+            $retMassge['massage'] = "username useless";
+            var_dump($retMassge);
             return;
         }
         $array_user = array();
@@ -25,14 +25,14 @@ class Adduser extends CI_Controller{
         $array_user['user_passwd'] = $arrary_params['user_passwd'];
         $ret = $this->Crud->insert("user",$array_user);
         if($ret){
-            $ret['result'] = "0";
-            $ret['massage'] = "successful";
-            var_dump($ret);
+            $retMassge['result'] = "0";
+            $retMassge['massage'] = "successful";
+            var_dump($retMassge);
             return;
         }else{
-            $ret['result'] = "1";
-            $ret['massage'] = "DB error";
-            var_dump($ret);
+            $retMassge['result'] = "1";
+            $retMassge['massage'] = "DB error";
+            var_dump($retMassge);
             return;
         }
     }
