@@ -17,12 +17,23 @@ class Adduser extends CI_Controller{
             $ret['result'] = "1";
             $ret['massage'] = "username useless";
             var_dump($ret);
+            return;
         }
         $array_user = array();
         $array_user['user_status'] = 1;
         $array_user['user_name'] = $arrary_params['user_name'];
         $array_user['user_passwd'] = $arrary_params['user_passwd'];
         $ret = $this->Crud->insert("user",$array_user);
-        echo $ret;
+        if($ret){
+            $ret['result'] = "0";
+            $ret['massage'] = "successful";
+            var_dump($ret);
+            return;
+        }else{
+            $ret['result'] = "1";
+            $ret['massage'] = "DB error";
+            var_dump($ret);
+            return;
+        }
     }
 }
