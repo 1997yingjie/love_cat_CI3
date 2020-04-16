@@ -12,7 +12,7 @@ class Login extends CI_Controller{
         $array_select['user_name'] = $arrary_params['user_name'];
         $userInDB = $this->Crud->select('user',$array_select);
         $retMassge = array();
-        var_dump($userInDB);
+        //var_dump($userInDB);
 
         if( empty($userInDB) ){
             $retMassge['result'] = "0";
