@@ -12,14 +12,14 @@ class Login extends CI_Controller{
         $array_select['user_name'] = $arrary_params['user_name'];
         $userInDB = $this->Crud->select('user',$array_select);
         $retMassge = array();
-        var_dump($retMassge);
-        if( empty($retMassge) ){
+        var_dump($userInDB);
+        if( empty($userInDB) ){
             $retMassge['result'] = "0";
             $retMassge['massage'] = "ID errror";
             var_dump($retMassge);
             return;
         }
-        if($arrary_params['user_passwd'] == $retMassge['user_passwd'] && $retMassge['user_status'] == 1){
+        if($arrary_params['user_passwd'] == $userInDB['user_passwd'] && $userInDB['user_status'] == 1){
             $retMassge['result'] = "1";
             $retMassge['massage'] = "successful";
             var_dump($retMassge);
