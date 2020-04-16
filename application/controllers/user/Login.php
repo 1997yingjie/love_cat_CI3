@@ -10,9 +10,10 @@ class Login extends CI_Controller{
         $arrary_params = $this->input->get();
         $array_select = array();
         $array_select['user_name'] = $arrary_params['user_name'];
-        $userInDB = $this->Crud->select('user',$array_select);
+        $userInDB = json_decode($this->Crud->select('user',$array_select));
         $retMassge = array();
         //var_dump($userInDB);
+
         if( empty($userInDB) ){
             $retMassge['result'] = "0";
             $retMassge['massage'] = "ID errror";
