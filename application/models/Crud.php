@@ -22,9 +22,7 @@ class Crud extends CI_Model{
         }
         $q = $this->db->get();
 
-        foreach($q->result() as $row){
-            var_dump($row);
-        }
+        return $q->result();
     }
 
     public function update($tablename,$where,$array_info){
