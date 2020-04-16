@@ -18,7 +18,7 @@ class Crud extends CI_Model{
         $this->db->select('*');
         $this->db->from($tablename);
         foreach($array_select as $key => $value){
-            $this->db->where($kay,$value);
+            $this->db->where($key,$value);
         }
         $q = $this->db->get();
 
