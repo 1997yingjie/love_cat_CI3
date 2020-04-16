@@ -7,7 +7,7 @@ class Adduser extends CI_Controller{
     }
 
     public function newUser(){//新增用户
-        $arrary_params = $this->uri->uri_to_assoc();
+        $arrary_params = $this->input->get();
         $array_select = array();
         $array_select['user_name'] = $arrary_params['user_name'];
         $this->Crud->select('user',$array_select);
