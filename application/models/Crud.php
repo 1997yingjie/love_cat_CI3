@@ -15,8 +15,16 @@ class Crud extends CI_Model{
 
     public function select($tablename,$array_select){
         
-        $ret = $this->db->get_where($tablename,$array_select,10);
-        return $ret;
+        $this->db->select('*');
+        $this->db->from($tablename);
+        foreach($array_select as $key => $value){
+            $this->db->where($kay,$value);
+        }
+        $q = $this->db->get();
+
+        foreach($q->result() as $row){
+            var_dump($row);
+        }
     }
 
     public function update($tablename,$where,$array_info){
