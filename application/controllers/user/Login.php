@@ -13,7 +13,7 @@ class Login extends CI_Controller{
         $userInDB = $this->Crud->select('user',$array_select);
         $retMassge = array();
         //var_dump($userInDB);
-
+        
         if( empty($userInDB) ){
             $retMassge['result'] = "0";
             $retMassge['massage'] = "ID errror";
@@ -21,6 +21,9 @@ class Login extends CI_Controller{
             return;
         }
         if($arrary_params['user_passwd'] == $userInDB[0]->user_passwd && $userInDB[0]->user_status == 1){
+            $array_update = array();
+            $array_update['last_time'] = date("Y-m-d H:i:s");
+            $this->Crud->update('user',$array_update,$array_select);
             $retMassge['result'] = "1";
             $retMassge['massage'] = "successful";
             var_dump($retMassge);

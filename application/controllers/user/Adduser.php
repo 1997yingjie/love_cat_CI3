@@ -24,9 +24,10 @@ class Adduser extends CI_Controller{
         $array_user['user_name'] = $arrary_params['user_name'];
         $array_user['user_passwd'] = $arrary_params['user_passwd'];
         $ret = $this->Crud->insert("user",$array_user);
-        if($ret){
+        if($ret['ret']){
             $retMassge['result'] = "1";
             $retMassge['massage'] = "successful";
+            $retMassge['csae_id'] = $ret['case_id'];
             var_dump($retMassge);
             return;
         }else{

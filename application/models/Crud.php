@@ -10,7 +10,11 @@ class Crud extends CI_Model{
     public function insert($tablename,$array_info){
 
         $ret = $this->db->insert($tablename,$array_info);
-        return $ret;
+        $case_id = $this->db->insert_id();
+        $result = array();
+        $result['ret'] = $ret;
+        $result['case_id'] = $case_id;
+        return $result;
     }
 
     public function select($tablename,$array_select){
@@ -26,7 +30,8 @@ class Crud extends CI_Model{
     }
 
     public function update($tablename,$where,$array_info){
-        $this->db->from($tablename);
+        $bool = $this->db->update($tablename,$array_info,$where);
+        return $bool;
     }
 
     public function getDataByRang($tablename,$count,$start)
