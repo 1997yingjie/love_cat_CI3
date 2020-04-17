@@ -13,7 +13,7 @@ class GetCatInfo extends CI_Controller{
         if(FALSE){
             $retMassge['result'] = "1";
             $retMassge['massage'] = "successful";
-            $retMassge['array_info'] = ;
+            $retMassge['array_info'] = $ret;
             var_dump($retMassge);
             return;
         }else{
