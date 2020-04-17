@@ -12,7 +12,7 @@ class DeleteInfo extends CI_Controller{
         $array_select['case_id'] = $arrary_params['case_id'];
         $array_update = array();
         $array_update['status'] = 1;
-        $ret = $this->Crud->update('invitation',$array_update,$array_select);
+        $ret = $this->Crud->update('invitation',$array_select,$array_update);
         if($ret){
             $retMassge['result'] = "1";
             $retMassge['massage'] = "successful";
