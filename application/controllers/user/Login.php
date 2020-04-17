@@ -23,7 +23,7 @@ class Login extends CI_Controller{
         if($arrary_params['user_passwd'] == $userInDB[0]->user_passwd && $userInDB[0]->user_status == 1){
             $array_update = array();
             $array_update['last_time'] = date("Y-m-d H:i:s");
-            $this->Crud->update('user',$array_update,$array_select);
+            $this->Crud->update('user',$array_select,$array_update);
             $retMassge['result'] = "1";
             $retMassge['massage'] = "successful";
             var_dump($retMassge);
