@@ -29,6 +29,23 @@ class GetCatInfo extends CI_Controller{
         $array_select = array();
         $array_select['originate_name'] = $arrary_params['user_name'];
         $mineCatInDB = $this->Crud->select('invitation',$array_select);
-        var_dump($mineCatInDB);
+        $RetMineInfo = array();
+        foreach($mineCatInDB as $oneinfo){
+            $retOneInfo = array();
+            $retOneInfo['ext'] = $oneinfo->ext;
+            $retOneInfo['city_name'] = $oneinfo->city_name;
+            $retOneInfo['cat_status'] = $oneinfo->cat_status;
+            $retOneInfo['color'] = $oneinfo->color;
+            $retOneInfo['sterilization'] = $oneinfo->sterilization;
+            $retOneInfo['kind'] = $oneinfo->kind;
+            $retOneInfo['sex'] = $oneinfo->sex;
+            $retOneInfo['operate_time'] = $oneinfo->operate_time;
+            $RetMineInfo[] = $retOneInfo;
+        }
+        $retMassge['result'] = "1";
+        $retMassge['massage'] = "successful";
+        $retMassge['date'] = $RetMineInfo;
+        var_dump($retMassge);
+        return;
     }
 }
