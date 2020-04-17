@@ -26,6 +26,9 @@ class GetCatinfo extends CI_Controller{
 
     public function getByUser(){
         $arrary_params = $this->input->get();
-        
+        $array_select = array();
+        $array_select['originate_name'] = $arrary_params['user_name'];
+        $mineCatInDB = $this->Crud->select('invitation',$array_select);
+        var_dump($mineCatInDB);
     }
 }
