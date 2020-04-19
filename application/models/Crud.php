@@ -36,7 +36,15 @@ class Crud extends CI_Model{
 
     public function getDataByRang($tablename,$count,$start)
     {
+        $this->db->where('status',0);
         $ret = $this->db->get($tablename,$count,$start);
         return $ret;
     }
+
+    public function getCount($tablename)
+    {
+        $ret = $this->db->count_all($tablename);
+        return $ret;
+    }
+    
 }

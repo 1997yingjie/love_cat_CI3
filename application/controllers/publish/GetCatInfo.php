@@ -6,9 +6,41 @@ class GetCatInfo extends CI_Controller{
         $this->load->model( "Crud" );
     }
 
-    public function getByRang(){
+    public function getByNextRang(){
         $arrary_params = $this->input->get();
-        $ret = getDataByRang('invitation',$arrary_params['count'],$arrary_params['start']);
+        $lastNow = $arrary_params['lastNow'];
+        if($lastNow<6){
+            $ret = getDataByRang('invitation',$lastNow-1,1);
+        }else{
+            $ret = getDataByRang('invitation',5,$lastNow-5);
+        }
+        
+        var_dump($ret);
+        if(FALSE){
+            $retMassge['result'] = "1";
+            $retMassge['massage'] = "successful";
+            $retMassge['array_info'] = $ret;
+            var_dump($retMassge);
+            return;
+        }else{
+            $retMassge['result'] = "2";
+            $retMassge['massage'] = "DB error";
+            var_dump($retMassge);
+            return;
+        }
+    }
+
+    public function getNewInfo(){
+        $arrary_params = $this->input->get();
+        //if(array_key_exists("topNow",$arrary_params)){
+        $SumCount = $this->Crud->getCount('invitation');
+        if($SumCount<6){
+            $ret = getDataByRang('invitation',$SumCount,1);
+        }else{
+            $ret = getDataByRang('invitation',5,$SumCount-4);
+        }
+        
+
         var_dump($ret);
         if(FALSE){
             $retMassge['result'] = "1";
