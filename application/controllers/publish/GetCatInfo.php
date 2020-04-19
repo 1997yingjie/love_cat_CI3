@@ -10,9 +10,9 @@ class GetCatInfo extends CI_Controller{
         $arrary_params = $this->input->get();
         $lastNow = $arrary_params['lastNow'];
         if($lastNow<6){
-            $ret = getDataByRang('invitation',$lastNow-1,1);
+            $ret = $this->Crud->getDataByRang('invitation',$lastNow-1,1);
         }else{
-            $ret = getDataByRang('invitation',5,$lastNow-5);
+            $ret = $this->Crud->getDataByRang('invitation',5,$lastNow-5);
         }
         
         var_dump($ret);
@@ -35,9 +35,9 @@ class GetCatInfo extends CI_Controller{
         //if(array_key_exists("topNow",$arrary_params)){
         $SumCount = $this->Crud->getCount('invitation');
         if($SumCount<6){
-            $ret = getDataByRang('invitation',$SumCount,1);
+            $ret = $this->Crud->getDataByRang('invitation',$SumCount,1);
         }else{
-            $ret = getDataByRang('invitation',5,$SumCount-4);
+            $ret = $this->Crud->getDataByRang('invitation',5,$SumCount-4);
         }
         
 
