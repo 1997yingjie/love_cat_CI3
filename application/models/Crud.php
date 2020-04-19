@@ -38,7 +38,7 @@ class Crud extends CI_Model{
     {
         $this->db->where('status',0);
         $ret = $this->db->get($tablename,$count,$start);
-        return $ret;
+        return $ret->result();
     }
 
     public function getCount($tablename)
