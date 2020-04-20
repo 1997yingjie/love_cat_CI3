@@ -36,6 +36,7 @@ class GetCatInfo extends CI_Controller{
             if($oncatinfo->status == 1){
                 continue;
             }
+            $tmp['case_id'] = $oncatinfo->case_id;
             $tmp['originate_name'] = $oncatinfo->originate_name;
             $tmp['ext'] = $oncatinfo->ext;
             $tmp['city_name'] = $oncatinfo->city_name;
