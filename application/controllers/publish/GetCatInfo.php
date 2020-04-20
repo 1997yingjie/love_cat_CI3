@@ -33,7 +33,7 @@ class GetCatInfo extends CI_Controller{
         $catInfo = array();
         foreach($ret as $oncatinfo){
             $tmp =array();
-            if($oncatinfo['status'] == 1){
+            if($oncatinfo->status == 1){
                 continue;
             }
             $tmp['originate_name'] = $oncatinfo->originate_name;
