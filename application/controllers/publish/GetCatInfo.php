@@ -20,7 +20,7 @@ class GetCatInfo extends CI_Controller{
         if($lastNow<6){
             $ret = $this->Crud->getDataByRang('invitation',$lastNow-1,0);
         }else{
-            $ret = $this->Crud->getDataByRang('invitation',5,$lastNow-5);
+            $ret = $this->Crud->getDataByRang('invitation',5,$lastNow-6);
         }
         
         if(empty( $ret )){
@@ -71,22 +71,50 @@ class GetCatInfo extends CI_Controller{
         //if(array_key_exists("topNow",$arrary_params)){
         $SumCount = $this->Crud->getCount('invitation');
         if($SumCount<6){
-            $ret = $this->Crud->getDataByRang('invitation',$SumCount,1);
+            $ret = $this->Crud->getDataByRang('invitation',$SumCount,0);
         }else{
-            $ret = $this->Crud->getDataByRang('invitation',5,$SumCount-4);
+            $ret = $this->Crud->getDataByRang('invitation',5,$SumCount-5);
         }
         
 
-        var_dump($ret);
-        if(FALSE){
+        if(empty( $ret )){
+            $retMassge['result'] = "2";
+            $retMassge['massage'] = "DB error";
+            var_dump($retMassge);
+            return;
+        }
+
+        $catInfo = array();
+        foreach($ret as $oncatinfo){
+            $tmp =array();
+            if($oncatinfo->status == 1){
+                continue;
+            }
+            $tmp['case_id'] = $oncatinfo->case_id;
+            $tmp['originate_name'] = $oncatinfo->originate_name;
+            $tmp['ext'] = $oncatinfo->ext;
+            $tmp['city_name'] = $oncatinfo->city_name;
+            $tmp['cat_status'] = $oncatinfo->cat_status;
+            $tmp['color'] = $oncatinfo->color;
+            $tmp['sterilization'] = $oncatinfo->sterilization;
+            $tmp['sex'] = $oncatinfo->sex;
+            $tmp['age'] = $oncatinfo->age;
+            $tmp['kind'] = $oncatinfo->kind;
+            $tmp['phone'] = $oncatinfo->phone;
+            $tmp['picture'] = $oncatinfo->picture;
+            $tmp['operate_time'] = $oncatinfo->operate_time;
+            $catInfo[] = $tmp;
+        }
+
+        if(! empty($catInfo)){
             $retMassge['result'] = "1";
             $retMassge['massage'] = "successful";
-            $retMassge['array_info'] = $ret;
+            $retMassge['array_info'] = $catInfo;
             var_dump($retMassge);
             return;
         }else{
-            $retMassge['result'] = "2";
-            $retMassge['massage'] = "DB error";
+            $retMassge['result'] = "3";
+            $retMassge['massage'] = "NoMoreInfo";
             var_dump($retMassge);
             return;
         }
