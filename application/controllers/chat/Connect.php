@@ -17,6 +17,7 @@ class Connect extends CI_Controller{
         $_SESSION = $this->input->get();
         // 假设用户已经登录，用户uid和群组id在session中
         $uName      = $_SESSION['uName'];
+        $client_id  = $_SESSION['client_id'];
         //$group_id = $_SESSION['group'];
         // client_id与uid绑定
         Gateway::bindUid($client_id, $uName);
@@ -26,7 +27,7 @@ class Connect extends CI_Controller{
     public function gethistory(){
         //获取掉线期间的数据
         $arrary_params = $this->input->get();
-        
+
     }
     
 }
