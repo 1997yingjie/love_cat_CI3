@@ -37,7 +37,10 @@ class Events
     public static function onConnect($client_id)
     {
         // 向当前client_id发送数据 
-        Gateway::sendToClient($client_id, "Hello $client_id\r\n");
+        Gateway::sendToClient($client_id, json_encode(array(
+            'type'      => 'init',
+            'client_id' => $client_id
+        )));
 
         // 向所有人发送
         //Gateway::sendToAll("$client_id login\r\n");
@@ -51,10 +54,10 @@ class Events
    public static function onMessage($client_id, $message)
    {
         //绑定username和clientid
-        $req_data = json_decode($message, true);
-        Gateway::bindUid($client_id, $req_data['send_name']);
+        //$req_data = json_decode($message, true);
+        //Gateway::bindUid($client_id, $req_data['send_name']);
         //向指定用户发送
-        Gateway::sendToUid($req_data['getname'], $req_data['message']);
+        //Gateway::sendToUid($req_data['getname'], $req_data['message']);
         // 向所有人发送 
         //Gateway::sendToAll("$client_id said $message\r\n");
    }
