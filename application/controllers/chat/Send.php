@@ -15,12 +15,30 @@ class Send extends CI_Controller{
 
     public function sendMassage(){
         $_SESSION = $this->input->get();
+        $message = array();
+        $message['destination_name']    = $_SESSION['send_to'];
+        $message['ext']      = $_SESSION['ext'];
+        $message['originate_name']      = $_SESSION['originate_name'];
+        $message['operate_time']     = date("Y-m-d H:i:s");  
 
-        $send_to      = $_SESSION['send_to'];
-        $message      = $_SESSION['message'];   
         Gateway::sendToUid($send_to, $message);
-        // 加入某个群组（可调用多次加入多个群组）
-        //Gateway::joinGroup($client_id, $group_id);
+
+
+        //将数据写入数据库
+        
+        $ret = $this->Crud->insert("chat",$message);
+        if($ret['ret']){
+            $retMassge['result'] = "1";
+            $retMassge['massage'] = "successful";
+            $retMassge['csae_id'] = $ret['case_id'];
+            var_dump($retMassge);
+            return;
+        }else{
+            $retMassge['result'] = "2";
+            $retMassge['massage'] = "DB error";
+            var_dump($retMassge);
+            return;
+        }
     }
 }
 
